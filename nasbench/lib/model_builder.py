@@ -404,7 +404,7 @@ def compute_vertex_channels(input_channels, output_channels, matrix):
   for v in range(1, num_vertices - 1):
     if matrix[v, num_vertices - 1]:
       vertex_channels[v] = interior_channels
-      if correction:
+      if correction.value:
         vertex_channels[v] += 1
         correction -= 1
 
