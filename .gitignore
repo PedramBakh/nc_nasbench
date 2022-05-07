@@ -2,3 +2,4 @@ venv/
 nasbench.egg-info/
 *.pyc
 model.ckpt*
+cifar10-tfrecords/
