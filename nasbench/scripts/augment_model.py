@@ -24,8 +24,8 @@ from nasbench.lib import model_spec
 import numpy as np
 import tensorflow as tf     # Used for app, flags, logging
 
-tf.flags.DEFINE_string('model_dir', '', 'model directory')
-FLAGS = tf.flags.FLAGS
+tf.compat.v1.flags.DEFINE_string('model_dir', '', 'model directory')
+FLAGS = tf.compat.v1.flags.FLAGS
 
 
 def create_resnet20_spec(config):
@@ -144,8 +144,8 @@ def main(_):
   spec = create_best_nasbench_spec(config)
 
   data = evaluate.augment_and_evaluate(spec, config, FLAGS.model_dir)
-  tf.logging.info(data)
+  tf.compat.v1.logging.info(data)
 
 
 if __name__ == '__main__':
-  tf.app.run(main)
+  tf.compat.v1.app.run(main)

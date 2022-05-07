@@ -44,8 +44,7 @@ CIFAR_LOCAL_FOLDER = 'cifar-10-batches-py'
 
 def download_and_extract(data_dir):
   # download CIFAR-10 if not already downloaded.
-  tf.contrib.learn.datasets.base.maybe_download(CIFAR_FILENAME, data_dir,
-                                                CIFAR_DOWNLOAD_URL)
+  tf.keras.utils.get_file(fname=CIFAR_FILENAME, origin=CIFAR_DOWNLOAD_URL, cache_subdir=data_dir, archive_format='tar')
   tarfile.open(os.path.join(data_dir, CIFAR_FILENAME),
                'r:gz').extractall(data_dir)
 
@@ -69,7 +68,7 @@ def _get_file_names():
 
 
 def read_pickle_from_file(filename):
-  with tf.gfile.Open(filename, 'rb') as f:
+  with tf.io.gfile.GFile(filename, 'rb') as f:
     if sys.version_info >= (3, 0):
       data_dict = pickle.load(f, encoding='bytes')
     else:
@@ -80,7 +79,7 @@ def read_pickle_from_file(filename):
 def convert_to_tfrecord(input_file, output_file):
   """Converts a file to TFRecords."""
   print('Generating %s' % output_file)
-  with tf.python_io.TFRecordWriter(output_file) as record_writer:
+  with tf.io.TFRecordWriter(output_file) as record_writer:
     data_dict = read_pickle_from_file(input_file)
     data = data_dict[b'data']
     labels = data_dict[b'labels']
@@ -134,7 +133,7 @@ def main(data_dir):
 
   output_file = os.path.join(data_dir, 'sample.tfrecords')
   print('Generating %s' % output_file)
-  with tf.python_io.TFRecordWriter(output_file) as record_writer:
+  with tf.io.TFRecordWriter(output_file) as record_writer:
     for label_images in images:
       for example in label_images:
         record_writer.write(example.SerializeToString())

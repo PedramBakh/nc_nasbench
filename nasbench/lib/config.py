@@ -18,22 +18,35 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import os
 from absl import flags
 
 FLAGS = flags.FLAGS
 
+base_path = os.path.join(os.getcwd(), 'nasbench', 'data', 'cifar10-tfrecords')
+
+train1 = os.path.join(base_path, 'train_1.tfrecords')
+train2 = os.path.join(base_path, 'train_2.tfrecords')
+train3 = os.path.join(base_path, 'train_3.tfrecords')
+train4 = os.path.join(base_path, 'train_4.tfrecords')
+train_data_files = [train1, train2, train3, train4]
+
+valid_data_file = os.path.join(base_path, 'validation.tfrecords')
+test_data_file = os.path.join(base_path, 'test.tfrecords')
+sample_data_file = os.path.join(base_path, 'sample.tfrecords')
+
 # Data flags (only required for generating the dataset)
 flags.DEFINE_list(
-    'train_data_files', [],
+    'train_data_files', train_data_files,
     'Training data files in TFRecord format. Multiple files can be passed in a'
     ' comma-separated list. The first file in the list will be used for'
     ' computing the training error.')
 flags.DEFINE_string(
-    'valid_data_file', '', 'Validation data in TFRecord format.')
+    'valid_data_file', valid_data_file, 'Validation data in TFRecord format.')
 flags.DEFINE_string(
-    'test_data_file', '', 'Testing data in TFRecord format.')
+    'test_data_file', test_data_file, 'Testing data in TFRecord format.')
 flags.DEFINE_string(
-    'sample_data_file', '', 'Sampled batch data in TFRecord format.')
+    'sample_data_file', sample_data_file, 'Sampled batch data in TFRecord format.')
 flags.DEFINE_string(
     'data_format', 'channels_last',
     'Data format, one of [channels_last, channels_first] for NHWC and NCHW'
@@ -43,10 +56,10 @@ flags.DEFINE_integer(
 
 # Search space parameters.
 flags.DEFINE_integer(
-    'module_vertices', 7,
+    'module_vertices', 4,
     'Number of vertices in module matrix, including input and output.')
 flags.DEFINE_integer(
-    'max_edges', 9,
+    'max_edges', 4,
     'Maximum number of edges in the module matrix.')
 flags.DEFINE_list(
     'available_ops', ['conv3x3-bn-relu', 'conv1x1-bn-relu', 'maxpool3x3'],
@@ -63,7 +76,7 @@ flags.DEFINE_integer(
 flags.DEFINE_integer(
     'batch_size', 256, 'Training batch size.')
 flags.DEFINE_integer(
-    'train_epochs', 108,
+    'train_epochs', 4,
     'Maximum training epochs. If --train_seconds is reached first, training'
     ' may not reach --train_epochs.')
 flags.DEFINE_float(
@@ -87,7 +100,7 @@ flags.DEFINE_integer(
     'Maximum number of times to try training and evaluating an individual'
     ' before aborting.')
 flags.DEFINE_list(
-    'intermediate_evaluations', ['0.5'],
+    'intermediate_evaluations', ['0.25', '1.0'],
     'Intermediate evaluations relative to --train_epochs. For example, to'
     ' evaluate the model at 1/4, 1/2, 3/4 of the total epochs, use [0.25, 0.5,'
     ' 0.75]. An evaluation is always done at the start and end of training.')
@@ -97,7 +110,7 @@ flags.DEFINE_integer(
 
 # TPU flags
 flags.DEFINE_bool(
-    'use_tpu', True, 'Use TPUs for train and evaluation.')
+    'use_tpu', False, 'Use TPUs for train and evaluation.')
 flags.DEFINE_integer(
     'tpu_iterations_per_loop', 100, 'Iterations per loop of TPU execution.')
 flags.DEFINE_integer(

@@ -65,6 +65,7 @@ from __future__ import print_function
 import itertools
 import json
 import sys
+import os
 
 from absl import app
 from absl import flags
@@ -72,14 +73,18 @@ from absl import logging
 
 from nasbench.lib import graph_util
 import numpy as np
-import tensorflow as tf   # For gfile
+import tensorflow as tf  # For gfile
 
-flags.DEFINE_string('output_file', '/tmp/generated_graphs.json',
+
+base_path = os.path.join(os.getcwd(), 'nasbench', 'data', 'graphs')
+output_file = os.path.join(base_path, 'generated_graphs_4V4E.json')
+
+flags.DEFINE_string('output_file', output_file,
                     'Output file name.')
-flags.DEFINE_integer('max_vertices', 7,
+flags.DEFINE_integer('max_vertices', 4,
                      'Maximum number of vertices including input/output.')
 flags.DEFINE_integer('num_ops', 3, 'Number of operation labels.')
-flags.DEFINE_integer('max_edges', 9, 'Maximum number of edges.')
+flags.DEFINE_integer('max_edges', 4, 'Maximum number of edges.')
 flags.DEFINE_boolean('verify_isomorphism', True,
                      'Exhaustively verifies that each detected isomorphism'
                      ' is truly an isomorphism. This operation is very'
@@ -132,7 +137,7 @@ def main(_):
     logging.info('Up to %d vertices: %d graphs (%d without hashing)',
                  vertices, len(buckets), total_graphs)
 
-  with tf.gfile.Open(FLAGS.output_file, 'w') as f:
+  with tf.io.gfile.GFile(FLAGS.output_file, 'w') as f:
     json.dump(buckets, f, sort_keys=True)
 
 
