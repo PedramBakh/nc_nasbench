@@ -77,14 +77,14 @@ import tensorflow as tf  # For gfile
 
 
 base_path = os.path.join(os.getcwd(), 'nasbench', 'data', 'graphs')
-output_file = os.path.join(base_path, 'generated_graphs_4V4E.json')
+output_file = os.path.join(base_path, 'generated_graphs_7V9E.json')
 
 flags.DEFINE_string('output_file', output_file,
                     'Output file name.')
-flags.DEFINE_integer('max_vertices', 4,
+flags.DEFINE_integer('max_vertices', 7,
                      'Maximum number of vertices including input/output.')
 flags.DEFINE_integer('num_ops', 3, 'Number of operation labels.')
-flags.DEFINE_integer('max_edges', 4, 'Maximum number of edges.')
+flags.DEFINE_integer('max_edges', 9, 'Maximum number of edges.')
 flags.DEFINE_boolean('verify_isomorphism', True,
                      'Exhaustively verifies that each detected isomorphism'
                      ' is truly an isomorphism. This operation is very'
