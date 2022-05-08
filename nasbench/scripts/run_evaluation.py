@@ -43,6 +43,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import argparse
 import json
 import os
 import re
@@ -56,11 +57,13 @@ from nasbench.lib import model_spec
 import numpy as np
 import tensorflow as tf
 
-models_file = os.path.join(os.getcwd(), 'nasbench', 'data', 'graphs', 'generated_graphs_4V4E.json')
+models_file_prefix_default = os.path.join(os.getcwd(), 'nasbench', 'data', 'graphs', 'generated_graphs_')
 output_dir = os.path.join(os.getcwd(), 'nasbench', 'data', 'train_model_results', 'carbon')
 
-flags.DEFINE_string('models_file', models_file,
-                    'JSON file containing models.')
+flags.DEFINE_string('models_file_prefix', models_file_prefix_default,
+                    'JSON file prefix containing models.')
+flags.DEFINE_string('graph_file_spec', '',
+                    'Number of vertices and edges in graph file (e.g. 4V4E for 4 vertices and 4 edges.')
 flags.DEFINE_string('remainders_file', '',
                     'JSON file containing list of remainders as tuples of'
                     ' (module hash, repeat num). If provided, only the runs in'
@@ -76,14 +79,15 @@ flags.DEFINE_integer('worker_id_offset', 0,
                      'Worker ID offset added.')
 flags.DEFINE_integer('total_workers', 1,
                      'Total number of workers, across all flocks.')
+
 FLAGS = flags.FLAGS
 
 CHECKPOINT_PREFIX = 'model.ckpt'
 RESULTS_FILE = 'results.json'
+
 # Checkpoint 1 is a side-effect of pre-initializing the model weights and can be
 # deleted during the clean-up step.
 CHECKPOINT_1_PREFIX = 'model.ckpt-1.'
-
 
 class NumpyEncoder(json.JSONEncoder):
   """Converts numpy objects to JSON-serializable format."""
@@ -225,18 +229,16 @@ class Evaluator(object):
         else:
           tf.io.gfile.remove(full_filename)
 
-
 def main(args):
-  del args  # Unused
+  #del args  # Unused
   worker_id = FLAGS.worker_id + FLAGS.worker_id_offset
   evaluator = Evaluator(
-      models_file=FLAGS.models_file,
-      output_dir=FLAGS.output_dir,
+      models_file=FLAGS.models_file_prefix + FLAGS.graph_file_spec + '.json',
+      output_dir=os.path.join(FLAGS.output_dir, FLAGS.graph_file_spec),
       worker_id=worker_id,
       total_workers=FLAGS.total_workers,
       model_id_regex=FLAGS.model_id_regex)
   evaluator.run_evaluation()
-
 
 if __name__ == '__main__':
   app.run(main)
