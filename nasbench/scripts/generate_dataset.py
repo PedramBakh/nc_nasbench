@@ -94,47 +94,49 @@ def get_metrics(eval_dir, graph_info):
     """
     metrics = []
     # Get list of model directories
-    for folder in os.listdir(eval_dir):
-        curr_path = os.path.join(eval_dir, folder)
-        if (folder == '_recovery'):
-            continue;
-        for model_hash in os.listdir(curr_path):
-            curr_path = os.path.join(curr_path, model_hash)
-            # Store model hash and metrics for later pairing
-            model_info = graph_info[model_hash]
-            raw_adjacency, raw_ops = get_raw_operations_and_matrix(model_info[0], model_info[1])
+    for epoch in os.listdir(eval_dir):
+        curr_path = os.path.join(eval_dir, epoch)
+        for folder in os.listdir(curr_path):
+            curr_path = os.path.join(curr_path, folder)
+            if (folder == '_recovery'):
+                continue;
+            for model_hash in os.listdir(curr_path):
+                curr_path = os.path.join(curr_path, model_hash)
+                # Store model hash and metrics for later pairing
+                model_info = graph_info[model_hash]
+                raw_adjacency, raw_ops = get_raw_operations_and_matrix(model_info[0], model_info[1])
 
-            for repeat in os.listdir(curr_path):
-                temp_path = os.path.join(curr_path, repeat)
-                # Open repeat folder and locate the results.json file
-                with open(os.path.join(temp_path, 'results.json'), 'r') as results:
-                    data = json.loads(results.read())
-                    eval_msgs = []
-                    # Create evaluation messages for a single repeat
-                    for i in range(EVALUATIONS_PER_MODEL):
-                        eval_dict = data['evaluation_results'][i]
-                        msg = model_metrics_pb2.EvaluationData(current_epoch=eval_dict['epochs'],
-                                                               training_time=eval_dict['training_time'],
-                                                               train_accuracy=eval_dict['train_accuracy'],
-                                                               validation_accuracy=
-                                                               eval_dict['validation_accuracy'],
-                                                               test_accuracy=eval_dict['test_accuracy'])
-                        eval_msgs.append(msg)
+                for repeat in os.listdir(curr_path):
+                    temp_path = os.path.join(curr_path, repeat)
+                    # Open repeat folder and locate the results.json file
+                    with open(os.path.join(temp_path, 'results.json'), 'r') as results:
+                        data = json.loads(results.read())
+                        eval_msgs = []
+                        # Create evaluation messages for a single repeat
+                        for i in range(EVALUATIONS_PER_MODEL):
+                            eval_dict = data['evaluation_results'][i]
+                            msg = model_metrics_pb2.EvaluationData(current_epoch=eval_dict['epochs'],
+                                                                   training_time=eval_dict['training_time'],
+                                                                   train_accuracy=eval_dict['train_accuracy'],
+                                                                   validation_accuracy=
+                                                                   eval_dict['validation_accuracy'],
+                                                                   test_accuracy=eval_dict['test_accuracy'])
+                            eval_msgs.append(msg)
 
-                    metric_msg = model_metrics_pb2.ModelMetrics(evaluation_data=eval_msgs,
-                                                                trainable_parameters=data['trainable_params'],
-                                                                total_time=data['total_time'])
+                        metric_msg = model_metrics_pb2.ModelMetrics(evaluation_data=eval_msgs,
+                                                                    trainable_parameters=data['trainable_params'],
+                                                                    total_time=data['total_time'])
 
-                    ser_metric = metric_msg.SerializeToString()
-                    utf8_metric = base64.encodebytes(ser_metric)
+                        ser_metric = metric_msg.SerializeToString()
+                        utf8_metric = base64.encodebytes(ser_metric)
 
-                # Get max epochs
-                max_epochs = max(eval_msgs, key=get_epochs)
-                max_epochs = int(max_epochs.current_epoch)
+                    # Get max epochs
+                    max_epochs = max(eval_msgs, key=get_epochs)
+                    max_epochs = int(max_epochs.current_epoch)
 
-                # Append and encode
-                row = [model_hash, int(max_epochs), raw_adjacency, raw_ops, utf8_metric]
-                metrics.append(np.array(row))
+                    # Append and encode
+                    row = [model_hash, int(max_epochs), raw_adjacency, raw_ops, utf8_metric]
+                    metrics.append(np.array(row))
     return metrics
 
 def main(args):
@@ -143,6 +145,9 @@ def main(args):
 
     print("Generating records..")
     path = os.path.join(os.getcwd(), 'nasbench', 'data', 'datasets')
+    # Note that ideally you want the dataset to consist of all epoch budgets, in which case
+    # the flag could be specified as '4_8_32_108' rather than just '4'.
+    # The script generates the dataset from all results available for a specific graph_spec (i.e. all budgets).
     tfrecord_name = os.path.join(path, 'epochs_' + FLAGS.epochs + '_spec_' + FLAGS.graph_file_spec) + '.tfrecord'
     with tf.io.TFRecordWriter(tfrecord_name) as writer:
         for metric in metrics:

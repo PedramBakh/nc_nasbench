@@ -76,7 +76,7 @@ flags.DEFINE_integer(
 flags.DEFINE_integer(
     'batch_size', 256, 'Training batch size.')
 flags.DEFINE_integer(
-    'train_epochs', 4,
+    'train_epochs', 108,
     'Maximum training epochs. If --train_seconds is reached first, training'
     ' may not reach --train_epochs.')
 flags.DEFINE_float(
@@ -100,7 +100,7 @@ flags.DEFINE_integer(
     'Maximum number of times to try training and evaluating an individual'
     ' before aborting.')
 flags.DEFINE_list(
-    'intermediate_evaluations', ['0.25', '1.0'],
+    'intermediate_evaluations', ['0.0092592592593', '1.0'],
     'Intermediate evaluations relative to --train_epochs. For example, to'
     ' evaluate the model at 1/4, 1/2, 3/4 of the total epochs, use [0.25, 0.5,'
     ' 0.75]. An evaluation is always done at the start and end of training.')

@@ -234,7 +234,7 @@ def main(args):
   worker_id = FLAGS.worker_id + FLAGS.worker_id_offset
   evaluator = Evaluator(
       models_file=FLAGS.models_file_prefix + FLAGS.graph_file_spec + '.json',
-      output_dir=os.path.join(FLAGS.output_dir, FLAGS.graph_file_spec),
+      output_dir=os.path.join(FLAGS.output_dir, FLAGS.graph_file_spec, str(_config.build_config()['train_epochs'])+ '_epochs'),
       worker_id=worker_id,
       total_workers=FLAGS.total_workers,
       model_id_regex=FLAGS.model_id_regex)
