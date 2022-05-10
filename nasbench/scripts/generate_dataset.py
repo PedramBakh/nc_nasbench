@@ -9,6 +9,7 @@ from nasbench.lib import model_metrics_pb2
 from nasbench.lib import config as _config
 from absl import app
 from absl import flags
+import re
 
 # Define data paths
 EVALUATIONS_PER_MODEL = 3
@@ -19,13 +20,6 @@ config = _config.build_config()
 graph_dir = os.path.join(os.getcwd(), 'nasbench', 'data', 'graphs')
 eval_dir = os.path.join(os.getcwd(), 'nasbench', 'data', 'train_model_results', 'carbon')
 graph_file_prefix = os.path.join(graph_dir, 'generated_graphs_')
-
-#for name in list(flags.FLAGS):
-#    delattr(flags.FLAGS, name)
-
-#flags.DEFINE_string(name='graph_file_spec',
-#                    default='',
-#                    help='JSON file prefix containing models.')
 
 flags.DEFINE_string(name='graph_dir',
                     default=graph_dir,
@@ -38,14 +32,6 @@ flags.DEFINE_string(name='eval_dir',
 flags.DEFINE_string(name='graph_file_prefix',
                     default=graph_file_prefix,
                     help='Graph file prefix')
-
-flags.DEFINE_string(name='graph_file_spec',
-                    default='',
-                    help='Number of vertices and edges in graph file (e.g. 4V4E for 4 vertices and 4 edges.')
-
-flags.DEFINE_string(name='epochs',
-                    default='',
-                    help='Number of epochs for which models have been trained.')
 
 flags.DEFINE_integer(name='examples',
                     default=1,
@@ -95,10 +81,11 @@ def get_metrics(eval_dir, graph_info):
     metrics = []
     # Get list of model directories
     for epoch in os.listdir(eval_dir):
-        curr_path = os.path.join(eval_dir, epoch)
-        for folder in os.listdir(curr_path):
-            curr_path = os.path.join(curr_path, folder)
-            if (folder == '_recovery'):
+        base_path = os.path.join(eval_dir, epoch)
+        for folder in os.listdir(base_path):
+            curr_path = os.path.join(base_path, folder)
+            if folder == '_recovery' or folder == 'emissions_log_init' or folder == 'emissions_log_total' or folder == 'emissions_log_train'\
+                    or folder == 'models_build_from':
                 continue;
             for model_hash in os.listdir(curr_path):
                 curr_path = os.path.join(curr_path, model_hash)
@@ -140,15 +127,14 @@ def get_metrics(eval_dir, graph_info):
     return metrics
 
 def main(args):
-    graph_info = get_model_hash_and_ops(FLAGS.graph_file_prefix + FLAGS.graph_file_spec + '.json')
-    metrics = get_metrics(os.path.join(FLAGS.eval_dir, FLAGS.graph_file_spec), graph_info)
+    graph_file_spec = str(FLAGS.module_vertices) + 'V' + str(FLAGS.max_edges) + 'E'
+    graph_info = get_model_hash_and_ops(FLAGS.graph_file_prefix + graph_file_spec + '.json')
+    metrics = get_metrics(os.path.join(FLAGS.eval_dir, graph_file_spec), graph_info)
 
     print("Generating records..")
     path = os.path.join(os.getcwd(), 'nasbench', 'data', 'datasets')
-    # Note that ideally you want the dataset to consist of all epoch budgets, in which case
-    # the flag could be specified as '4_8_32_108' rather than just '4'.
     # The script generates the dataset from all results available for a specific graph_spec (i.e. all budgets).
-    tfrecord_name = os.path.join(path, 'epochs_' + FLAGS.epochs + '_spec_' + FLAGS.graph_file_spec) + '.tfrecord'
+    tfrecord_name = os.path.join(path, '_spec_' + graph_file_spec) + '.tfrecord'
     with tf.io.TFRecordWriter(tfrecord_name) as writer:
         for metric in metrics:
             row = metric.tolist()
@@ -160,6 +146,7 @@ def main(args):
 
     i = 0
     for serialized_row in tf.compat.v1.python_io.tf_record_iterator(tfrecord_name):
+        print("here")
         if i < FLAGS.examples:
             print('-' * os.get_terminal_size()[0])
             print(f'EXAMPLE {i + 1}:')

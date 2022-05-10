@@ -43,6 +43,7 @@ CIFAR_LOCAL_FOLDER = 'cifar-10-batches-py'
 
 
 def download_and_extract(data_dir):
+  print("here is dir:", os.path.join(data_dir, CIFAR_FILENAME))
   # download CIFAR-10 if not already downloaded.
   tf.keras.utils.get_file(fname=CIFAR_FILENAME, origin=CIFAR_DOWNLOAD_URL, cache_subdir=data_dir, archive_format='tar')
   tarfile.open(os.path.join(data_dir, CIFAR_FILENAME),

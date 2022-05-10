@@ -19,7 +19,18 @@ from __future__ import division
 from __future__ import print_function
 
 import time
+import os
+import sys
 
+# Add submodule to path
+path = os.path.join(os.path.dirname(os.getcwd()), 'nc_carbontracker')
+sys.path.append(path)
+
+from carbontracker.tracker import CarbonTracker
+from carbontracker import parser
+from absl import flags
+
+#from nasbench.scripts import run_evaluation
 from nasbench.lib import cifar
 from nasbench.lib import model_builder
 from nasbench.lib import training_time
@@ -32,6 +43,12 @@ VALID_EXCEPTIONS = (
     tf.errors.InvalidArgumentError,       # NaN gradient
     tf.errors.DeadlineExceededError,      # Timed out
 )
+
+LOGGER_COUNTER = 0
+def _logger_counter():
+    global LOGGER_COUNTER
+    LOGGER_COUNTER += 1
+    return LOGGER_COUNTER
 
 
 class AbortError(Exception):
@@ -127,33 +144,112 @@ class _TrainAndEvaluator(object):
           evaluations.append(1.0)
         assert evaluations == sorted(evaluations)
 
+        metadata = {}
         evaluation_results = []
         start_time = time.time()
+
+        total_carbontracker = CarbonTracker(epochs=1, log_dir=os.path.join(self.config['train_model_dir'], 'emissions_log_total'),
+                                             logging_mode=1, logger_name=f'carbontracker_total_{_logger_counter()}', epochs_before_pred=0)
+        total_carbontracker.epoch_start()
 
         # Train for 1 step with 0 LR to initialize the weights, then evaluate
         # once at the start for completeness, accuracies expected to be around
         # random selection. Note that batch norm moving averages change during
         # the step but the trainable weights do not.
+        init_carbontracker = CarbonTracker(epochs=1, log_dir=os.path.join(self.config['train_model_dir'], 'emissions_log_init'),
+                                            logging_mode=1, logger_name=f'carbontracker_init_{_logger_counter()}', epochs_before_pred=0)
+        init_carbontracker.epoch_start()
         self.estimator.train(
             input_fn=self.input_train.input_fn,
             max_steps=1,
             hooks=[timing.train_hook],
             saving_listeners=[timing.saving_listener])
-        evaluation_results.append(self._evaluate_all(0.0, 0))
+        init_carbontracker.epoch_end()
+        init_carbontracker_std_stream, init_carbontracker_out_stream = init_carbontracker.get_logger_stream()
+        init_log = parser.parse_streams(std=init_carbontracker_std_stream, out=init_carbontracker_out_stream, timestamp=True, avg_carbon_intensity=True)
+        init_log_filtered = {
+            'energy (kWh)': init_log['actual']['energy (kWh)'],
+            'co2eq (g)': init_log['actual']['co2eq (g)'],
+            'avg_intensity (gCO2/kWh)': init_log['actual']['avg_intensity (gCO2/kWh)'],
+            'start_emission': init_log['actual']['start_emission'],
+            'stop_emission': init_log['actual']['stop_emission']
+        }
+        evaluation_results.append(self._evaluate_all(0.0, 0, add_metrics=init_log_filtered))
 
         for next_evaluation in evaluations:
           epoch = next_evaluation * self.config['train_epochs']
           train_steps = int(epoch * self.input_train.num_images /
                             self.config['batch_size'])
+
+          # If max epoch budget, we do not want a prediction (i.e.epochs_before_pred = 0).
+          if epoch == self.config['train_epochs']:
+            train_carbontracker = CarbonTracker(epochs=self.config['train_epochs'], log_dir=os.path.join(self.config['train_model_dir'], 'emissions_log_train'),
+                                                logging_mode=1, logger_name=f'carbontracker_init_{_logger_counter()}', epochs_before_pred=0)
+          else:
+              train_carbontracker = CarbonTracker(epochs=self.config['train_epochs'], log_dir=os.path.join(self.config['train_model_dir'], 'emissions_log_train'),
+                                                  logging_mode=1, logger_name=f'carbontracker_init_{_logger_counter()}')
+          train_carbontracker.epoch_start()
           self.estimator.train(
               input_fn=self.input_train.input_fn,
               max_steps=train_steps,
               hooks=[timing.train_hook],
               saving_listeners=[timing.saving_listener])
+          train_carbontracker.epoch_end()
+          train_carbontracker_std_stream, train_carbontracker_out_stream = train_carbontracker.get_logger_stream()
+          train_log = parser.parse_streams(std=train_carbontracker_std_stream, out=train_carbontracker_out_stream, avg_carbon_intensity=True, timestamp=True)
 
-          evaluation_results.append(self._evaluate_all(epoch, train_steps))
+          # If intermediate evaluation
+          epoch = round(epoch, 1)
+          # TODO: Add support for more than one intermediate evaluation
+          # Currently only supports previous evaluation as weight initialization
+          if epoch != self.config['train_epochs']:
+              train_log_filtered = {
+                  'energy (kWh)': train_log['actual']['energy (kWh)'] + evaluation_results[-1]['energy (kWh)'],
+                  'co2eq (g)': train_log['actual']['co2eq (g)'] + evaluation_results[-1]['co2eq (g)'],
+                  'avg_intensity (gCO2/kWh)': train_log['actual']['avg_intensity (gCO2/kWh)'],
+                  'start_emission': train_log['actual']['start_emission'],
+                  'stop_emission': train_log['actual']['stop_emission']
+              }
+              evaluation_results.append(self._evaluate_all(epoch, train_steps, add_metrics=train_log_filtered))
+              train_log_prediction = {
+                  'predicted_energy (kWh)': train_log['pred']['energy (kWh)'],
+                  'predicted_co2eq (g)': train_log['pred']['co2eq (g)'],
+                  'predicted_training_time': train_log['pred']['duration (s)'],
+                  'predicted_avg_intensity (gCO2/kWh)': train_log['pred']['avg_intensity (gCO2/kWh)']
+              }
+              metadata['tmp'] = train_log_prediction
+
+          # If last epoch
+          # Note that we have to add any previous evaluations done to the emission metrics, as training continues
+          # after intermediate evaluations rather than restart (e.g. if there is a halway evaluation, emission data
+          # for last epoch will only correspond to half the epoch budget trained).
+          # TODO: Add support for more than one intermediate evaluation
+          if epoch == self.config['train_epochs']:
+              train_log_filtered = {
+                  'energy (kWh)': train_log['actual']['energy (kWh)'] + evaluation_results[-1]['energy (kWh)'],
+                  'co2eq (g)': train_log['actual']['co2eq (g)'] + evaluation_results[-1]['co2eq (g)'],
+                  'avg_intensity (gCO2/kWh)': train_log['actual']['avg_intensity (gCO2/kWh)'],
+                  'start_emission': train_log['actual']['start_emission'],
+                  'stop_emission': train_log['actual']['stop_emission']
+              }
+              # If any intermediate evaluations
+              if len(evaluations) > 1:
+                  train_log_filtered['predicted_energy (kWh)'] = metadata['tmp']['predicted_energy (kWh)']
+                  train_log_filtered['predicted_co2eq (g)'] = metadata['tmp']['predicted_co2eq (g)']
+                  train_log_filtered['predicted_training_time'] = metadata['tmp']['predicted_training_time']
+                  train_log_filtered['predicted_avg_intensity (gCO2/kWh)'] = metadata['tmp']['predicted_avg_intensity (gCO2/kWh)']
+                  del metadata['tmp']
+
+              evaluation_results.append(self._evaluate_all(epoch, train_steps, add_metrics=train_log_filtered))
+
 
         all_time = time.time() - start_time
+        total_carbontracker.epoch_end()
+        total_std_stream, total_out_stream = total_carbontracker.get_logger_stream()
+        total_log = parser.parse_streams(std=total_std_stream, out=total_out_stream, timestamp=True, avg_carbon_intensity=True)
+        print(total_std_stream.getvalue())
+        print(total_out_stream.getvalue())
+
         break     # Break from retry loop on success
       except VALID_EXCEPTIONS as e:   # pylint: disable=catching-non-exception
         attempts += 1
@@ -164,12 +260,18 @@ class _TrainAndEvaluator(object):
     metadata = {
         'trainable_params': _get_param_count(self.model_dir),
         'total_time': all_time,   # includes eval and other metric time
+        'total_energy (kWh)': total_log['actual']['energy (kWh)'],
+        'total_co2eq (g)': total_log['actual']['co2eq (g)'],
+        'start_emission': total_log['actual']['start_emission'],
+        'stop_emission': total_log['actual']['stop_emission'],
+        'avg_intensity (gCO2/kWh)': total_log['actual']['avg_intensity (gCO2/kWh)'],
+        'avg_power_usages:': parser.filter_logs(total_log['components'], ["epoch_durations (s)"], nested=True),
         'evaluation_results': evaluation_results,
     }
 
     return metadata
 
-  def _evaluate_all(self, epochs, steps):
+  def _evaluate_all(self, epochs, steps, add_metrics=None):
     """Runs all the evaluations."""
     train_accuracy = _evaluate(self.estimator, self.input_train_eval,
                                self.config, name='train')
@@ -184,7 +286,7 @@ class _TrainAndEvaluator(object):
     sample_metrics = self._compute_sample_metrics()
     predict_time = time.time() - now
 
-    return {
+    metrics = {
         'epochs': epochs,
         'training_time': train_time,
         'training_steps': steps,
@@ -194,6 +296,13 @@ class _TrainAndEvaluator(object):
         #'sample_metrics': sample_metrics,
         'predict_time': predict_time,
     }
+    if add_metrics is not None:
+        for metric, value in add_metrics.items():
+            metrics[metric] = value
+        return metrics
+    else:
+        return metrics
+
 
   def _compute_sample_metrics(self):
     """Computes the metrics on a fixed batch."""
@@ -308,4 +417,5 @@ def _get_param_count(model_dir):
                      for v in tf.compat.v1.trainable_variables()])
 
   return params
+
 

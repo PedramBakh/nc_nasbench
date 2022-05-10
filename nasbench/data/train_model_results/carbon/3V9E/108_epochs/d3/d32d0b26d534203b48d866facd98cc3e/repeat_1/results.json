@@ -1,0 +1,89 @@
+{
+  "trainable_params": 11051402,
+  "total_time": 4366.0128128528595,
+  "total_energy (kWh)": 0.767667,
+  "total_co2eq (g)": 103.635018,
+  "start_emission": "2022-05-14 23:00:56",
+  "stop_emission": "2022-05-15 00:13:42",
+  "avg_intensity (gCO2/kWh)": "135.00",
+  "avg_power_usages:": {
+    "gpu": {
+      "avg_power_usages (W)": [
+        [
+          346.57313602
+        ]
+      ],
+      "avg_energy_usages (J)": [
+        [
+          1513141.7775946802
+        ]
+      ],
+      "devices": [
+        "NVIDIA GeForce RTX 3090"
+      ]
+    },
+    "cpu": {
+      "avg_power_usages (W)": [
+        [
+          51.52831616
+        ]
+      ],
+      "avg_energy_usages (J)": [
+        [
+          224973.14363772163
+        ]
+      ],
+      "devices": [
+        "cpu:0"
+      ]
+    }
+  },
+  "evaluation_results": [
+    {
+      "epochs": 0.0,
+      "training_time": 0.0,
+      "training_steps": 0,
+      "train_accuracy": 0.10226362198591232,
+      "validation_accuracy": 0.09885817021131516,
+      "test_accuracy": 0.10126201808452606,
+      "predict_time": 1.569448471069336,
+      "energy (kWh)": 0.001209,
+      "co2eq (g)": 0.166881,
+      "avg_intensity (gCO2/kWh)": "138.00",
+      "start_emission": "2022-05-14 23:00:56",
+      "stop_emission": "2022-05-14 23:01:03"
+    },
+    {
+      "epochs": 1.0,
+      "training_time": 41.939998626708984,
+      "training_steps": 156,
+      "train_accuracy": 0.10266426205635071,
+      "validation_accuracy": 0.09985977411270142,
+      "test_accuracy": 0.09905849397182465,
+      "predict_time": 1.5119152069091797,
+      "energy (kWh)": 0.008505,
+      "co2eq (g)": 1.173717,
+      "avg_intensity (gCO2/kWh)": "138.00",
+      "start_emission": "2022-05-14 23:01:18",
+      "stop_emission": "2022-05-14 23:02:07"
+    },
+    {
+      "epochs": 108.0,
+      "training_time": 4300.7080078125,
+      "training_steps": 16875,
+      "train_accuracy": 1.0,
+      "validation_accuracy": 0.938401460647583,
+      "test_accuracy": 0.9288862347602844,
+      "predict_time": 2.2996714115142822,
+      "energy (kWh)": 0.761173,
+      "co2eq (g)": 102.621861,
+      "avg_intensity (gCO2/kWh)": "135.00",
+      "start_emission": "2022-05-14 23:02:21",
+      "stop_emission": "2022-05-15 00:13:26",
+      "predicted_energy (kWh)": 0.918561,
+      "predicted_co2eq (g)": 121.906159,
+      "predicted_training_time": 5275.0,
+      "predicted_avg_intensity (gCO2/kWh)": "132.71"
+    }
+  ]
+}

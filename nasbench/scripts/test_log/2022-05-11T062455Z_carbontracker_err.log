@@ -1,0 +1,10 @@
+2022-05-11 06:24:55,399 - CarbonIntensityThread - INFO - Traceback (most recent call last):
+  File "/home/student/pedram-local/nascar_project/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/intensity.py", line 62, in carbon_intensity
+    if time_dur < 30: # https://api.carbonintensity.org.uk/ supports forecast for 30 sec. intervals.
+TypeError: '<' not supported between instances of 'NoneType' and 'int'
+
+2022-05-11 06:24:56,863 - MainThread - INFO - Traceback (most recent call last):
+  File "/home/student/pedram-local/nascar_project/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/intensity.py", line 62, in carbon_intensity
+    if time_dur < 30: # https://api.carbonintensity.org.uk/ supports forecast for 30 sec. intervals.
+TypeError: '<' not supported between instances of 'NoneType' and 'int'
+

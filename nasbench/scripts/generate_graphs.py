@@ -66,6 +66,8 @@ import itertools
 import json
 import sys
 import os
+import random
+import numpy as np
 
 from absl import app
 from absl import flags
@@ -77,7 +79,7 @@ import tensorflow as tf  # For gfile
 
 
 base_path = os.path.join(os.getcwd(), 'nasbench', 'data', 'graphs')
-output_file = os.path.join(base_path, 'generated_graphs_7V9E.json')
+output_file = os.path.join(base_path, 'generated_graphs_')
 
 flags.DEFINE_string('output_file', output_file,
                     'Output file name.')
@@ -89,6 +91,8 @@ flags.DEFINE_boolean('verify_isomorphism', True,
                      'Exhaustively verifies that each detected isomorphism'
                      ' is truly an isomorphism. This operation is very'
                      ' expensive.')
+flags.DEFINE_integer('num_samples', -1,
+                     'Number of graphs to sample from the space. Default is all graphs.')
 FLAGS = flags.FLAGS
 
 
@@ -137,9 +141,18 @@ def main(_):
     logging.info('Up to %d vertices: %d graphs (%d without hashing)',
                  vertices, len(buckets), total_graphs)
 
-  with tf.io.gfile.GFile(FLAGS.output_file, 'w') as f:
-    json.dump(buckets, f, sort_keys=True)
-
+  if FLAGS.num_samples == -1:
+    fname = FLAGS.output_file + str(FLAGS.max_vertices) + 'V' + str(FLAGS.max_edges) + 'E' + f'_all_{len(buckets)}.json'
+  else:
+    samples = {}
+    while len(samples) < FLAGS.num_samples:
+        graph_hash = random.choice(list(buckets))
+        if graph_hash not in samples:
+            samples[graph_hash] = buckets[graph_hash]
+    fname = FLAGS.output_file + str(FLAGS.max_vertices) + 'V' + str(FLAGS.max_edges) + 'E' + f'_sample_{str(FLAGS.num_samples)}.json'
+    logging.info('Total graphs sampled: %d', len(samples))
+  with tf.io.gfile.GFile(fname, 'w') as f:
+    json.dump(samples, f, sort_keys=True)
 
 if __name__ == '__main__':
   app.run(main)

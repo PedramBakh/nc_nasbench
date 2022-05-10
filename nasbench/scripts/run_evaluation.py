@@ -56,14 +56,18 @@ from nasbench.lib import model_metrics_pb2
 from nasbench.lib import model_spec
 import numpy as np
 import tensorflow as tf
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 models_file_prefix_default = os.path.join(os.getcwd(), 'nasbench', 'data', 'graphs', 'generated_graphs_')
 output_dir = os.path.join(os.getcwd(), 'nasbench', 'data', 'train_model_results', 'carbon')
 
 flags.DEFINE_string('models_file_prefix', models_file_prefix_default,
                     'JSON file prefix containing models.')
-flags.DEFINE_string('graph_file_spec', '',
-                    'Number of vertices and edges in graph file (e.g. 4V4E for 4 vertices and 4 edges.')
+
+flags.DEFINE_string('models_file_name', '',
+                    'JSON graphs file for specific graphs file generated.'
+                    'This file must still be located in the graphs folder and prefixed "generated_graphs_".')
+
 flags.DEFINE_string('remainders_file', '',
                     'JSON file containing list of remainders as tuples of'
                     ' (module hash, repeat num). If provided, only the runs in'
@@ -112,6 +116,7 @@ class Evaluator(object):
                total_workers=1,
                model_id_regex='^'):
     self.config = _config.build_config()
+    self.config['train_model_dir'] = output_dir
     with tf.io.gfile.GFile(models_file) as f:
       self.models = json.load(f)
 
@@ -150,6 +155,10 @@ class Evaluator(object):
 
     assert self.current_index % self.total_workers == worker_id
     self.output_dir = output_dir
+
+    # Make empty file with name specifying from which graphs file models were build.
+    with tf.io.gfile.GFile(os.path.join(self.output_dir, 'models_build_from'), 'w') as build_info:
+      build_info.write(models_file)
 
   def run_evaluation(self):
     """Runs the worker evaluation loop."""
@@ -229,16 +238,27 @@ class Evaluator(object):
         else:
           tf.io.gfile.remove(full_filename)
 
+
 def main(args):
   #del args  # Unused
   worker_id = FLAGS.worker_id + FLAGS.worker_id_offset
+  graph_file_spec = str(FLAGS.module_vertices) + 'V' + str(FLAGS.max_edges) + 'E'
+  output_dir = os.path.join(FLAGS.output_dir, graph_file_spec, str(_config.build_config()['train_epochs'])+ '_epochs')
+
+  # If e.g. a graphs file sample is given, we change the models file.
+  if FLAGS.models_file_name is not '':
+    models_file = FLAGS.models_file_prefix + FLAGS.models_file_name + '.json'
+  else:
+    models_file = FLAGS.models_file_prefix + graph_file_spec + '.json'
+
   evaluator = Evaluator(
-      models_file=FLAGS.models_file_prefix + FLAGS.graph_file_spec + '.json',
-      output_dir=os.path.join(FLAGS.output_dir, FLAGS.graph_file_spec, str(_config.build_config()['train_epochs'])+ '_epochs'),
+      models_file=models_file,
+      output_dir=output_dir,
       worker_id=worker_id,
       total_workers=FLAGS.total_workers,
       model_id_regex=FLAGS.model_id_regex)
   evaluator.run_evaluation()
+
 
 if __name__ == '__main__':
   app.run(main)

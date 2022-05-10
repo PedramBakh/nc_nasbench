@@ -1,1 +1,89 @@
-{"trainable_params": 10177674, "total_time": 90.08882999420166, "evaluation_results": [{"epochs": 0.0, "training_time": 0.0, "training_steps": 0, "train_accuracy": 0.10006009787321091, "validation_accuracy": 0.09965945780277252, "test_accuracy": 0.10016025602817535, "predict_time": 1.1385610103607178}, {"epochs": 1.0, "training_time": 14.479000091552734, "training_steps": 156, "train_accuracy": 0.17417868971824646, "validation_accuracy": 0.17938701808452606, "test_accuracy": 0.17748397588729858, "predict_time": 1.1423063278198242}, {"epochs": 4.0, "training_time": 57.46099853515625, "training_steps": 625, "train_accuracy": 0.5961538553237915, "validation_accuracy": 0.5831330418586731, "test_accuracy": 0.5776242017745972, "predict_time": 1.03204345703125}]}
+{
+  "trainable_params": 10177674,
+  "total_time": 140.04372644424438,
+  "total_energy (kWh)": 0.023711,
+  "total_co2eq (g)": 3.675162,
+  "start_emission": "2022-05-14 21:05:02",
+  "stop_emission": "2022-05-14 21:07:22",
+  "avg_intensity (gCO2/kWh)": "155.00",
+  "avg_power_usages:": {
+    "gpu": {
+      "avg_power_usages (W)": [
+        [
+          337.80338462
+        ]
+      ],
+      "avg_energy_usages (J)": [
+        [
+          47302.6079483386
+        ]
+      ],
+      "devices": [
+        "NVIDIA GeForce RTX 3090"
+      ]
+    },
+    "cpu": {
+      "avg_power_usages (W)": [
+        [
+          45.57270777
+        ]
+      ],
+      "avg_energy_usages (J)": [
+        [
+          6381.5462690331005
+        ]
+      ],
+      "devices": [
+        "cpu:0"
+      ]
+    }
+  },
+  "evaluation_results": [
+    {
+      "epochs": 0.0,
+      "training_time": 0.0,
+      "training_steps": 0,
+      "train_accuracy": 0.08764022588729858,
+      "validation_accuracy": 0.08323317021131516,
+      "test_accuracy": 0.08533653616905212,
+      "predict_time": 2.033071756362915,
+      "energy (kWh)": 0.000961,
+      "co2eq (g)": 0.148923,
+      "avg_intensity (gCO2/kWh)": "155.00",
+      "start_emission": "2022-05-14 21:05:02",
+      "stop_emission": "2022-05-14 21:05:08"
+    },
+    {
+      "epochs": 1.0,
+      "training_time": 22.70599937438965,
+      "training_steps": 156,
+      "train_accuracy": 0.16135817766189575,
+      "validation_accuracy": 0.16316105425357819,
+      "test_accuracy": 0.1627604216337204,
+      "predict_time": 1.2197177410125732,
+      "energy (kWh)": 0.004668,
+      "co2eq (g)": 0.723523,
+      "avg_intensity (gCO2/kWh)": "155.00",
+      "start_emission": "2022-05-14 21:05:20",
+      "stop_emission": "2022-05-14 21:05:47"
+    },
+    {
+      "epochs": 4.0,
+      "training_time": 94.89700317382812,
+      "training_steps": 625,
+      "train_accuracy": 0.6536458134651184,
+      "validation_accuracy": 0.6430288553237915,
+      "test_accuracy": 0.6429286599159241,
+      "predict_time": 1.068009853363037,
+      "energy (kWh)": 0.018951,
+      "co2eq (g)": 2.789429,
+      "avg_intensity (gCO2/kWh)": "155.00",
+      "start_emission": "2022-05-14 21:05:54",
+      "stop_emission": "2022-05-14 21:07:12",
+      "predicted_energy (kWh)": 0.018672,
+      "predicted_co2eq (g)": 2.800734,
+      "predicted_training_time": 107.0,
+      "predicted_avg_intensity (gCO2/kWh)": "150.00"
+    }
+  ]
+}
