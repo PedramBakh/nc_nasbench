@@ -102,7 +102,7 @@ class NumpyEncoder(json.JSONEncoder):
       return obj.tolist()
     elif isinstance(obj, np.generic):
       # Scalars converted to closest Python type
-      return np.asscalar(obj)
+      return obj.item()
     return json.JSONEncoder.default(self, obj)
 
 
@@ -246,7 +246,7 @@ def main(args):
   output_dir = os.path.join(FLAGS.output_dir, graph_file_spec, str(_config.build_config()['train_epochs'])+ '_epochs')
 
   # If e.g. a graphs file sample is given, we change the models file.
-  if FLAGS.models_file_name is not '':
+  if FLAGS.models_file_name != '':
     models_file = FLAGS.models_file_prefix + FLAGS.models_file_name + '.json'
   else:
     models_file = FLAGS.models_file_prefix + graph_file_spec + '.json'
