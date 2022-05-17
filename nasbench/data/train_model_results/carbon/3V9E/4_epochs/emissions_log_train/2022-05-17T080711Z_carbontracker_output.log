@@ -1,0 +1,9 @@
+2022-05-17 08:07:11 - CarbonTracker: The following components were found: GPU with device(s) TITAN RTX. CPU with device(s) cpu:0, cpu:1.
+2022-05-17 08:08:46 - CarbonTracker: 
+Actual consumption for 1 epoch(s):
+	Time:	0:01:35
+	Energy:	0.017774 kWh
+	CO2eq:	3.376992 g
+	This is equivalent to:
+	0.028048 km travelled by car
+2022-05-17 08:08:46 - CarbonTracker: Finished monitoring.

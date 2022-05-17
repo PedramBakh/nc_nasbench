@@ -217,7 +217,7 @@ class Evaluator(object):
       json.dump(meta, f, cls=NumpyEncoder)
 
     # Delete some files to reclaim space
-    self._clean_model_dir(model_dir)
+    # self._clean_model_dir(model_dir)
 
   def _clean_model_dir(self, model_dir):
     """Cleans the output model directory to reclaim disk space."""
