@@ -56,10 +56,10 @@ flags.DEFINE_integer(
 
 # Search space parameters.
 flags.DEFINE_integer(
-    'module_vertices', 4,
+    'module_vertices', 7,
     'Number of vertices in module matrix, including input and output.')
 flags.DEFINE_integer(
-    'max_edges', 4,
+    'max_edges', 9,
     'Maximum number of edges in the module matrix.')
 flags.DEFINE_list(
     'available_ops', ['conv3x3-bn-relu', 'conv1x1-bn-relu', 'maxpool3x3'],

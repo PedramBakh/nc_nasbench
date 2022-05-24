@@ -1,0 +1,16 @@
+2022-05-23 07:04:10 - CarbonTracker: The following components were found: GPU with device(s) NVIDIA GeForce RTX 3090. CPU with device(s) cpu:0.
+2022-05-23 07:04:49 - CarbonTracker: 
+Actual consumption for 1 epoch(s):
+	Time:	0:00:39
+	Energy:	0.004633 kWh
+	CO2eq:	0.574458 g
+	This is equivalent to:
+	0.004771 km travelled by car
+2022-05-23 07:04:49 - CarbonTracker: 
+Predicted consumption for 108 epoch(s):
+	Time:	1:10:07
+	Energy:	0.500335 kWh
+	CO2eq:	49.622465 g
+	This is equivalent to:
+	0.412147 km travelled by car
+2022-05-23 07:04:49 - CarbonTracker: Finished monitoring.

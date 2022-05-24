@@ -126,6 +126,7 @@ class NASBench(object):
     random.seed(seed)
 
     print('Loading dataset from file... This may take a few minutes...')
+    print(dataset_file)
     start = time.time()
 
     # Stores the fixed statistics that are independent of evaluation (i.e.,
