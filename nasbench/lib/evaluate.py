@@ -24,13 +24,15 @@ import sys
 
 # Add submodule to path
 path = os.path.join(os.path.dirname(os.getcwd()), 'nc_carbontracker')
+path_extended = os.path.join(os.path.dirname(os.getcwd()), 'nascar', 'vendors', 'nc_carbontracker')
+
 sys.path.append(path)
+sys.path.append(path_extended)
 
 from carbontracker.tracker import CarbonTracker
 from carbontracker import parser
 from absl import flags
 
-#from nasbench.scripts import run_evaluation
 from nasbench.lib import cifar
 from nasbench.lib import model_builder
 from nasbench.lib import training_time
@@ -268,6 +270,17 @@ class _TrainAndEvaluator(object):
         'avg_power_usages:': parser.filter_logs(total_log['components'], ["epoch_durations (s)"], nested=True),
         'evaluation_results': evaluation_results,
     }
+
+    total_carbontracker.stop()
+    init_carbontracker.stop()
+    train_carbontracker.stop()
+
+    del total_std_stream
+    del total_out_stream
+    del init_carbontracker_std_stream
+    del init_carbontracker_out_stream
+    del train_carbontracker_std_stream
+    del train_carbontracker_out_stream
 
     return metadata
 

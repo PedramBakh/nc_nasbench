@@ -247,6 +247,7 @@ class _TrainAndEvaluator(object):
     total_carbontracker.stop()
     init_carbontracker.stop()
     train_carbontracker.stop()
+
     del total_std_stream
     del total_out_stream
     del init_carbontracker_std_stream

@@ -178,7 +178,11 @@ def main(args):
     print("Generating records..")
     path = os.path.join(os.getcwd(), 'nasbench', 'data', 'datasets')
     # The script generates the dataset from all results available for a specific graph_spec (i.e. all budgets).
-    tfrecord_name = os.path.join(path, 'carbon_' + graph_file_spec) + '.tfrecord'
+    #TODO: Add flag for output directory
+    #tfrecord_name = os.path.join(path, 'carbon_' + graph_file_spec) + '.tfrecord'
+    root_path = os.path.dirname(os.path.dirname(os.getcwd()))
+    tfrecord_name = os.path.join(root_path, 'nascar', 'utils', 'data', 'tabular_benchmarks', 'carbon_' + graph_file_spec) + '.tfrecord'
+
     with tf.io.TFRecordWriter(tfrecord_name) as writer:
         for metric in metrics:
             row = metric.tolist()

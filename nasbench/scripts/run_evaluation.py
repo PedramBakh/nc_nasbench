@@ -135,7 +135,7 @@ class Evaluator(object):
       # workers see a canonical ordering.
       regex = re.compile(model_id_regex)
       evaluated_keys = [key for key in self.models.keys() if regex.match(key)]
-      self.ordered_keys = sorted(evaluated_keys)
+      self.ordered_keys = sorted(evaluated_keys) # [:x] where x is the number of models to evaluate remaining repeats for
       self.num_models = len(self.ordered_keys)
       self.total_work_units = self.num_models * self.config['num_repeats']
 

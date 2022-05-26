@@ -94,10 +94,10 @@ import os
 import random
 import time
 
-from nasbench.lib import config
-from nasbench.lib import evaluate
-from nasbench.lib import model_metrics_pb2
-from nasbench.lib import model_spec as _model_spec
+from .lib import config
+from .lib import evaluate
+from .lib import model_metrics_pb2
+from .lib import model_spec as _model_spec
 import numpy as np
 import tensorflow as tf
 
