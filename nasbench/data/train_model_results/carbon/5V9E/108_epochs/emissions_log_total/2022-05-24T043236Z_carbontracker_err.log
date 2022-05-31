@@ -1,0 +1,61 @@
+2022-05-24 05:04:56,296 - CarbonIntensityThread - INFO - Traceback (most recent call last):
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/connection.py", line 456, in connect
+    cert = self.sock.getpeercert()
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/ssl.py", line 1123, in getpeercert
+    self._check_connected()
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/ssl.py", line 1088, in _check_connected
+    self.getpeername()
+OSError: [Errno 107] Transport endpoint is not connected
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/requests/adapters.py", line 440, in send
+    resp = conn.urlopen(
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/connectionpool.py", line 785, in urlopen
+    retries = retries.increment(
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/util/retry.py", line 550, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1040, in _validate_conn
+    conn.connect()
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/urllib3/connection.py", line 456, in connect
+    cert = self.sock.getpeercert()
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/ssl.py", line 1123, in getpeercert
+    self._check_connected()
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/ssl.py", line 1088, in _check_connected
+    self.getpeername()
+urllib3.exceptions.ProtocolError: ('Connection aborted.', OSError(107, 'Transport endpoint is not connected'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/lcd842/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/intensity.py", line 72, in carbon_intensity
+    carbon_intensity = fetcher.carbon_intensity(g_location, time_dur)
+  File "/home/lcd842/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 19, in carbon_intensity
+    ci = self._emission_current()
+  File "/home/lcd842/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 44, in _emission_current
+    response = requests.get(url)
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/requests/sessions.py", line 529, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/requests/sessions.py", line 645, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/lcd842/miniconda3/envs/nascar/lib/python3.8/site-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', OSError(107, 'Transport endpoint is not connected'))
+

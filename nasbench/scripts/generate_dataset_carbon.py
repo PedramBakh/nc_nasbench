@@ -84,19 +84,19 @@ def get_metrics(eval_dir, graph_info):
     for epoch in os.listdir(eval_dir):
         base_path = os.path.join(eval_dir, epoch)
         for folder in os.listdir(base_path):
-            curr_path = os.path.join(base_path, folder)
+            folder_path = os.path.join(base_path, folder)
             if folder == '_recovery' or folder == 'emissions_log_init' or folder == 'emissions_log_total' or folder == 'emissions_log_train'\
                     or folder == 'models_build_from':
                 continue;
-            for model_hash in os.listdir(curr_path):
-                curr_path = os.path.join(curr_path, model_hash)
+            for model_hash in os.listdir(folder_path):
+                hash_path = os.path.join(folder_path, model_hash)
                 # Store model hash and metrics for later pairing
                 model_info = graph_info[model_hash]
                 raw_adjacency, raw_ops = get_raw_operations_and_matrix(model_info[0], model_info[1])
 
                 #TODO: Remove cast to float of avg_intensity after model training.
-                for repeat in os.listdir(curr_path):
-                    temp_path = os.path.join(curr_path, repeat)
+                for repeat in os.listdir(hash_path):
+                    temp_path = os.path.join(hash_path, repeat)
                     # Open repeat folder and locate the results.json file
                     with open(os.path.join(temp_path, 'results.json'), 'r') as results:
                         data = json.loads(results.read())

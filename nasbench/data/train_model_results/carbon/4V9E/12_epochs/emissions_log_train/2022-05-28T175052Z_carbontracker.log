@@ -1,0 +1,24 @@
+2022-05-28 17:50:52 - carbontracker version 1.1.6
+2022-05-28 17:50:52 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-28 17:50:52 - The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-28 17:50:52 - Monitoring thread started.
+2022-05-28 17:50:52 - carbontracker version 1.1.6
+2022-05-28 17:50:52 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-28 17:50:52 - The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-28 17:50:52 - Monitoring thread started.
+2022-05-28 17:51:22 - Epoch 1:
+2022-05-28 17:51:22 - Duration: 0:00:30.87
+2022-05-28 17:51:22 - Average power usage (W) for gpu: [198.38533333]
+2022-05-28 17:51:22 - Average power usage (W) for cpu: [54.235945 68.594531]
+2022-05-28 17:51:22 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [90.0]
+2022-05-28 17:51:22 - Average carbon intensity during training was 90.00 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-28 17:51:23 - Carbon intensity for the next 0:06:10 is predicted to be 116.50 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-28 17:51:23 - Monitoring thread ended.
+2022-05-28 17:51:30 - Epoch 1:
+2022-05-28 17:51:30 - Duration: 0:00:37.65
+2022-05-28 17:51:30 - Average power usage (W) for gpu: [157.7745]
+2022-05-28 17:51:30 - Average power usage (W) for cpu: [55.304973 69.393438]
+2022-05-28 17:51:30 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [90.0]
+2022-05-28 17:51:30 - Average carbon intensity during training was 90.00 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-28 17:51:30 - Carbon intensity for the next 0:07:32 is predicted to be 116.50 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-28 17:51:30 - Monitoring thread ended.

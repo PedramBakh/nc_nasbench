@@ -1,0 +1,76 @@
+2022-05-27 08:36:55 - carbontracker version 1.1.6
+2022-05-27 08:36:55 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 08:36:55 - carbontracker version 1.1.6
+2022-05-27 08:36:55 - carbontracker version 1.1.6
+2022-05-27 08:36:55 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 08:36:55 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 08:36:55 - carbontracker version 1.1.6
+2022-05-27 08:36:55 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 08:36:55 - carbontracker version 1.1.6
+2022-05-27 08:36:55 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 08:36:55 - The following components were found: GPU with device(s) Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 08:36:55 - Monitoring thread started.
+2022-05-27 08:36:55 - The following components were found: GPU with device(s) Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 08:36:55 - Monitoring thread started.
+2022-05-27 08:36:55 - The following components were found: GPU with device(s) Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 08:36:55 - Monitoring thread started.
+2022-05-27 08:36:55 - The following components were found: GPU with device(s) Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 08:36:55 - The following components were found: GPU with device(s) Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 08:36:55 - Monitoring thread started.
+2022-05-27 08:36:55 - Monitoring thread started.
+2022-05-27 09:12:13 - Epoch 1:
+2022-05-27 09:12:13 - Duration: 0:35:17.43
+2022-05-27 09:12:13 - Average power usage (W) for gpu: [247.19437306]
+2022-05-27 09:12:13 - Average power usage (W) for cpu: [60.38076739 65.52324888]
+2022-05-27 09:12:13 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [38.0, 37.0]
+2022-05-27 09:12:13 - Average carbon intensity during training was 37.50 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 09:12:13 - Monitoring thread ended.
+2022-05-27 09:17:22 - Epoch 1:
+2022-05-27 09:17:22 - Duration: 0:40:27.22
+2022-05-27 09:17:22 - Average power usage (W) for gpu: [246.95748869]
+2022-05-27 09:17:22 - Average power usage (W) for cpu: [60.42050014 65.44779434]
+2022-05-27 09:17:22 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [38.0, 38.0, 37.0]
+2022-05-27 09:17:22 - Average carbon intensity during training was 37.67 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 09:17:22 - Monitoring thread ended.
+2022-05-27 09:21:19 - Epoch 1:
+2022-05-27 09:21:19 - Duration: 0:44:23.49
+2022-05-27 09:21:19 - Average power usage (W) for gpu: [244.87865702]
+2022-05-27 09:21:19 - Average power usage (W) for cpu: [60.47306132 65.46933025]
+2022-05-27 09:21:19 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [38.0, 38.0, 37.0]
+2022-05-27 09:21:19 - Average carbon intensity during training was 37.67 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 09:21:19 - Monitoring thread ended.
+2022-05-27 09:25:25 - Epoch 1:
+2022-05-27 09:25:25 - Duration: 0:48:30.00
+2022-05-27 09:25:25 - Average power usage (W) for gpu: [246.15621132]
+2022-05-27 09:25:25 - Average power usage (W) for cpu: [60.56289106 65.54388047]
+2022-05-27 09:25:25 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [38.0, 38.0, 37.0, 37.0]
+2022-05-27 09:25:25 - Average carbon intensity during training was 37.50 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 09:25:25 - Monitoring thread ended.
+2022-05-27 09:26:06 - Epoch 1:
+2022-05-27 09:26:06 - Duration: 0:49:10.94
+2022-05-27 09:26:06 - Average power usage (W) for gpu: [246.19218657]
+2022-05-27 09:26:06 - Average power usage (W) for cpu: [60.56856004 65.46202976]
+2022-05-27 09:26:06 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [38.0, 38.0, 37.0, 37.0]
+2022-05-27 09:26:06 - Average carbon intensity during training was 37.50 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 09:26:06 - Monitoring thread ended.
+2022-05-27 09:32:24 - Epoch 1:
+2022-05-27 09:32:24 - Duration: 0:55:29.05
+2022-05-27 09:32:24 - Average power usage (W) for gpu: [252.46059406]
+2022-05-27 09:32:24 - Average power usage (W) for cpu: [52.72945369 64.62235489]
+2022-05-27 09:32:24 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [38.0, 38.0, 37.0, 37.0]
+2022-05-27 09:32:24 - Average carbon intensity during training was 37.50 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 09:32:24 - Monitoring thread ended.
+2022-05-27 09:59:42 - Epoch 1:
+2022-05-27 09:59:42 - Duration: 1:22:46.43
+2022-05-27 09:59:42 - Average power usage (W) for gpu: [252.1222949]
+2022-05-27 09:59:42 - Average power usage (W) for cpu: [52.80328236 64.81559547]
+2022-05-27 09:59:42 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [38.0, 38.0, 37.0, 37.0, 36.0, 35.0]
+2022-05-27 09:59:42 - Average carbon intensity during training was 36.83 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 09:59:42 - Monitoring thread ended.
+2022-05-27 10:33:41 - Epoch 1:
+2022-05-27 10:33:41 - Duration: 1:56:46.27
+2022-05-27 10:33:41 - Average power usage (W) for gpu: [250.77793564]
+2022-05-27 10:33:41 - Average power usage (W) for cpu: [53.07894698 64.93631404]
+2022-05-27 10:33:41 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [38.0, 38.0, 37.0, 37.0, 36.0, 35.0, 43.0, 37.0]
+2022-05-27 10:33:41 - Average carbon intensity during training was 37.62 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 10:33:41 - Monitoring thread ended.

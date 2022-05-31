@@ -1,0 +1,45 @@
+2022-05-25 19:09:39,506 - CarbonIntensityThread - INFO - Traceback (most recent call last):
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/intensity.py", line 72, in carbon_intensity
+    carbon_intensity = fetcher.carbon_intensity(g_location, time_dur)
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 19, in carbon_intensity
+    ci = self._emission_current()
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 46, in _emission_current
+    raise exceptions.CarbonIntensityFetcherError(response.json())
+carbontracker.exceptions.CarbonIntensityFetcherError: {'statusCode': 429, 'message': 'Rate limit is exceeded. Try again in 2 seconds.'}
+
+2022-05-25 19:09:39,516 - CarbonIntensityThread - INFO - Traceback (most recent call last):
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/intensity.py", line 72, in carbon_intensity
+    carbon_intensity = fetcher.carbon_intensity(g_location, time_dur)
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 19, in carbon_intensity
+    ci = self._emission_current()
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 46, in _emission_current
+    raise exceptions.CarbonIntensityFetcherError(response.json())
+carbontracker.exceptions.CarbonIntensityFetcherError: {'statusCode': 429, 'message': 'Rate limit is exceeded. Try again in 2 seconds.'}
+
+2022-05-25 19:09:39,518 - CarbonIntensityThread - INFO - Traceback (most recent call last):
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/intensity.py", line 72, in carbon_intensity
+    carbon_intensity = fetcher.carbon_intensity(g_location, time_dur)
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 19, in carbon_intensity
+    ci = self._emission_current()
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 46, in _emission_current
+    raise exceptions.CarbonIntensityFetcherError(response.json())
+carbontracker.exceptions.CarbonIntensityFetcherError: {'statusCode': 429, 'message': 'Rate limit is exceeded. Try again in 1 seconds.'}
+
+2022-05-25 19:09:39,519 - CarbonIntensityThread - INFO - Traceback (most recent call last):
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/intensity.py", line 72, in carbon_intensity
+    carbon_intensity = fetcher.carbon_intensity(g_location, time_dur)
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 19, in carbon_intensity
+    ci = self._emission_current()
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 46, in _emission_current
+    raise exceptions.CarbonIntensityFetcherError(response.json())
+carbontracker.exceptions.CarbonIntensityFetcherError: {'statusCode': 429, 'message': 'Rate limit is exceeded. Try again in 2 seconds.'}
+
+2022-05-25 19:09:39,524 - CarbonIntensityThread - INFO - Traceback (most recent call last):
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/intensity.py", line 72, in carbon_intensity
+    carbon_intensity = fetcher.carbon_intensity(g_location, time_dur)
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 19, in carbon_intensity
+    ci = self._emission_current()
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 46, in _emission_current
+    raise exceptions.CarbonIntensityFetcherError(response.json())
+carbontracker.exceptions.CarbonIntensityFetcherError: {'statusCode': 429, 'message': 'Rate limit is exceeded. Try again in 1 seconds.'}
+

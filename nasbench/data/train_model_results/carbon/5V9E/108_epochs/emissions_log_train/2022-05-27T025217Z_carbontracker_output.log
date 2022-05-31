@@ -1,0 +1,16 @@
+2022-05-27 02:52:17 - CarbonTracker: The following components were found: GPU with device(s) Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 02:53:08 - CarbonTracker: 
+Actual consumption for 1 epoch(s):
+	Time:	0:00:50
+	Energy:	0.006931 kWh
+	CO2eq:	0.381214 g
+	This is equivalent to:
+	0.003166 km travelled by car
+2022-05-27 02:53:08 - CarbonTracker: 
+Predicted consumption for 108 epoch(s):
+	Time:	1:30:26
+	Energy:	0.748565 kWh
+	CO2eq:	52.451558 g
+	This is equivalent to:
+	0.435644 km travelled by car
+2022-05-27 02:53:08 - CarbonTracker: Finished monitoring.

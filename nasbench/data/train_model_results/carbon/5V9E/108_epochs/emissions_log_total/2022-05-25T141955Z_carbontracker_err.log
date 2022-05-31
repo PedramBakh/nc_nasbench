@@ -1,0 +1,9 @@
+2022-05-25 15:20:06,026 - CarbonIntensityThread - INFO - Traceback (most recent call last):
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/intensity.py", line 72, in carbon_intensity
+    carbon_intensity = fetcher.carbon_intensity(g_location, time_dur)
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 19, in carbon_intensity
+    ci = self._emission_current()
+  File "/home/jwg356/nascar/vendors/nc_carbontracker/carbontracker/emissions/intensity/fetchers/energidataservice.py", line 46, in _emission_current
+    raise exceptions.CarbonIntensityFetcherError(response.json())
+carbontracker.exceptions.CarbonIntensityFetcherError: {'statusCode': 500, 'message': 'Internal server error', 'activityId': 'd9abc172-8ba8-42f6-a491-4a4a79ccbca5'}
+

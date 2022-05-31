@@ -1,0 +1,66 @@
+2022-05-27 05:04:24 - carbontracker version 1.1.6
+2022-05-27 05:04:24 - carbontracker version 1.1.6
+2022-05-27 05:04:24 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 05:04:24 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 05:04:24 - carbontracker version 1.1.6
+2022-05-27 05:04:24 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 05:04:24 - carbontracker version 1.1.6
+2022-05-27 05:04:24 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 05:04:24 - carbontracker version 1.1.6
+2022-05-27 05:04:24 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 05:04:24 - carbontracker version 1.1.6
+2022-05-27 05:04:24 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 05:04:24 - The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 05:04:24 - The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 05:04:24 - Monitoring thread started.
+2022-05-27 05:04:24 - Monitoring thread started.
+2022-05-27 05:04:24 - The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 05:04:24 - Monitoring thread started.
+2022-05-27 05:04:24 - The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 05:04:24 - Monitoring thread started.
+2022-05-27 05:04:24 - The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 05:04:24 - Monitoring thread started.
+2022-05-27 05:04:24 - The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 05:04:24 - Monitoring thread started.
+2022-05-27 05:05:04 - Epoch 1:
+2022-05-27 05:05:04 - Duration: 0:00:40.00
+2022-05-27 05:05:04 - Average power usage (W) for gpu: [56.77325]
+2022-05-27 05:05:04 - Average power usage (W) for cpu: [43.80471275 45.64453625]
+2022-05-27 05:05:04 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [53.0]
+2022-05-27 05:05:04 - Average carbon intensity during training was 53.00 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 05:05:04 - Monitoring thread ended.
+2022-05-27 05:05:04 - Epoch 1:
+2022-05-27 05:05:04 - Duration: 0:00:40.46
+2022-05-27 05:05:04 - Average power usage (W) for gpu: [60.4085]
+2022-05-27 05:05:04 - Average power usage (W) for cpu: [44.590721   46.31352575]
+2022-05-27 05:05:04 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [53.0]
+2022-05-27 05:05:04 - Average carbon intensity during training was 53.00 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 05:05:04 - Monitoring thread ended.
+2022-05-27 05:05:04 - Epoch 1:
+2022-05-27 05:05:04 - Duration: 0:00:40.52
+2022-05-27 05:05:04 - Average power usage (W) for gpu: [65.6255]
+2022-05-27 05:05:04 - Average power usage (W) for cpu: [44.112268   46.44292025]
+2022-05-27 05:05:04 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [53.0]
+2022-05-27 05:05:04 - Average carbon intensity during training was 53.00 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 05:05:04 - Monitoring thread ended.
+2022-05-27 05:05:04 - Epoch 1:
+2022-05-27 05:05:04 - Duration: 0:00:40.55
+2022-05-27 05:05:04 - Average power usage (W) for gpu: [60.53075]
+2022-05-27 05:05:04 - Average power usage (W) for cpu: [44.47081825 46.622195  ]
+2022-05-27 05:05:04 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [53.0]
+2022-05-27 05:05:04 - Average carbon intensity during training was 53.00 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 05:05:04 - Monitoring thread ended.
+2022-05-27 05:05:05 - Epoch 1:
+2022-05-27 05:05:05 - Duration: 0:00:41.04
+2022-05-27 05:05:05 - Average power usage (W) for gpu: [57.48075]
+2022-05-27 05:05:05 - Average power usage (W) for cpu: [45.05664725 46.83267425]
+2022-05-27 05:05:05 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [53.0]
+2022-05-27 05:05:05 - Average carbon intensity during training was 53.00 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 05:05:05 - Monitoring thread ended.
+2022-05-27 05:05:08 - Epoch 1:
+2022-05-27 05:05:08 - Duration: 0:00:43.82
+2022-05-27 05:05:08 - Average power usage (W) for gpu: [63.571]
+2022-05-27 05:05:08 - Average power usage (W) for cpu: [44.810249 46.788363]
+2022-05-27 05:05:08 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [53.0]
+2022-05-27 05:05:08 - Average carbon intensity during training was 53.00 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 05:05:08 - Monitoring thread ended.

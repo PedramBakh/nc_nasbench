@@ -1,0 +1,23 @@
+2022-05-28 18:11:52 - carbontracker version 1.1.6
+2022-05-28 18:11:52 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-28 18:11:52 - The following components were found: GPU with device(s) Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-28 18:11:52 - Monitoring thread started.
+2022-05-28 18:11:52 - carbontracker version 1.1.6
+2022-05-28 18:11:52 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-28 18:11:52 - The following components were found: GPU with device(s) Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-28 18:11:52 - Monitoring thread started.
+2022-05-28 18:12:23 - Epoch 1:
+2022-05-28 18:12:23 - Duration: 0:00:31.20
+2022-05-28 18:12:23 - Average power usage (W) for gpu: [126.67066667]
+2022-05-28 18:12:23 - Average power usage (W) for cpu: [53.74060533 69.85292967]
+2022-05-28 18:12:23 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [84.0]
+2022-05-28 18:12:23 - Average carbon intensity during training was 84.00 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-28 18:12:24 - Carbon intensity for the next 0:06:14 is predicted to be 82.50 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-28 18:12:24 - Monitoring thread ended.
+2022-05-28 18:14:55 - Epoch 1:
+2022-05-28 18:14:55 - Duration: 0:03:02.89
+2022-05-28 18:14:55 - Average power usage (W) for gpu: [244.09311765]
+2022-05-28 18:14:55 - Average power usage (W) for cpu: [55.20141829 69.52736318]
+2022-05-28 18:14:55 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [84.0]
+2022-05-28 18:14:55 - Average carbon intensity during training was 84.00 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-28 18:14:55 - Monitoring thread ended.

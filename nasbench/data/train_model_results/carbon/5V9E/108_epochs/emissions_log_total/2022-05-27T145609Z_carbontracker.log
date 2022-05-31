@@ -1,0 +1,11 @@
+2022-05-27 14:56:09 - carbontracker version 1.1.6
+2022-05-27 14:56:09 - Only predicted and actual consumptions are multiplied by a PUE coefficient of 1.59 (Rhonda Ascierto, 2019, Uptime Institute Global Data Center Survey).
+2022-05-27 14:56:09 - The following components were found: GPU with device(s) Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-27 14:56:09 - Monitoring thread started.
+2022-05-27 15:41:03 - Epoch 1:
+2022-05-27 15:41:03 - Duration: 0:44:54.64
+2022-05-27 15:41:03 - Average power usage (W) for gpu: [250.36475102]
+2022-05-27 15:41:03 - Average power usage (W) for cpu: [60.84735055 60.66643501]
+2022-05-27 15:41:03 - Carbon intensities (gCO2/kWh) fetched every 900 s at detected location Copenhagen, Capital Region, DK: [53.0, 49.0, 56.0]
+2022-05-27 15:41:03 - Average carbon intensity during training was 52.67 gCO2/kWh at detected location: Copenhagen, Capital Region, DK.
+2022-05-27 15:41:03 - Monitoring thread ended.

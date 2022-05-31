@@ -1,0 +1,46 @@
+2022-05-25 19:09:38 - CarbonTracker: The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-25 19:09:38 - CarbonTracker: The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-25 19:09:38 - CarbonTracker: The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-25 19:09:38 - CarbonTracker: The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-25 19:09:38 - CarbonTracker: The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-25 19:09:38 - CarbonTracker: The following components were found: GPU with device(s) NVIDIA Quadro RTX 6000. CPU with device(s) cpu:0, cpu:1.
+2022-05-25 19:10:39 - CarbonTracker: 
+Actual consumption for 1 epoch(s):
+	Time:	0:01:00
+	Energy:	0.004026 kWh
+	CO2eq:	0.318050 g
+	This is equivalent to:
+	0.002642 km travelled by car
+2022-05-25 19:10:39 - CarbonTracker: Finished monitoring.
+2022-05-25 19:10:39 - CarbonTracker: 
+Actual consumption for 1 epoch(s):
+	Time:	0:01:01
+	Energy:	0.004116 kWh
+	CO2eq:	0.325167 g
+	This is equivalent to:
+	0.002701 km travelled by car
+2022-05-25 19:10:39 - CarbonTracker: Finished monitoring.
+2022-05-25 19:10:39 - CarbonTracker: 
+Actual consumption for 1 epoch(s):
+	Time:	0:01:01
+	Energy:	0.003999 kWh
+	CO2eq:	0.315928 g
+	This is equivalent to:
+	0.002624 km travelled by car
+2022-05-25 19:10:40 - CarbonTracker: Finished monitoring.
+2022-05-25 19:10:40 - CarbonTracker: 
+Actual consumption for 1 epoch(s):
+	Time:	0:01:01
+	Energy:	0.003913 kWh
+	CO2eq:	0.309137 g
+	This is equivalent to:
+	0.002568 km travelled by car
+2022-05-25 19:10:40 - CarbonTracker: Finished monitoring.
+2022-05-25 19:10:40 - CarbonTracker: 
+Actual consumption for 1 epoch(s):
+	Time:	0:01:01
+	Energy:	0.003932 kWh
+	CO2eq:	0.310656 g
+	This is equivalent to:
+	0.002580 km travelled by car
+2022-05-25 19:10:40 - CarbonTracker: Finished monitoring.
